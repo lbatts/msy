@@ -439,13 +439,16 @@ eqsim_run_csa <- function(fit,
     #collapse Cy to total catch numbers
     tmpCy<-apply(Cy,2:3,sum)
     
-    Cat<-Lan <- array(tmpCy, c(1, Nrun, Nmod),
+    Cw<-land <- array(tmpCy, c(1, Nrun, Nmod),
             dimnames = list(age = (1),
                             year = 1:Nrun,
                             iter = 1:Nmod))
     
-    Lan<-Lan*Wl*Ry
-    Cat<-Cat*Wy
+    Lan<-Cw*Wl*Ry
+    Cat<-Cw*Wy
+    Cat<-apply(Cat,2:3,sum)
+    Lan<-apply(Lan,2:3,sum)
+    
     # convert to catch weight
     # Cw <- Cy * Wy   # catch Numbers *catch wts
     # land <- Cy * Ry * Wl # catch Numbers * Fraction (in number) landed and landed wts
