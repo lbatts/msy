@@ -198,10 +198,10 @@ eqsim_run_csa <- function(fit,
   
   Mat <- matrix(FLCore::mat(stk.win), ncol = btyr2 - btyr1 + 1)
   M <- matrix(FLCore::m(stk.win), ncol = btyr2 - btyr1 + 1)
-  landings <- matrix(FLCore::quantSums(FLCore::landings.n(stk.winsel), ncol = slyr2 - slyr1 + 1))
+  landings <- matrix(FLCore::quantSums(FLCore::landings.n(stk.winsel)), ncol = slyr2 - slyr1 + 1)
   # if zero, use 0.10 of minimum value
   
-  catch <- matrix(FLCore::quantSums(FLCore::catch.n(stk.winsel), ncol = slyr2 - slyr1 + 1))
+  catch <- matrix(FLCore::quantSums(FLCore::catch.n(stk.winsel)), ncol = slyr2 - slyr1 + 1)
   sel <- matrix(FLCore::harvest(stk.winsel), ncol = slyr2 - slyr1 + 1)
   Fbar <- matrix(FLCore::fbar(stk.winsel), ncol = slyr2 - slyr1  + 1)
   sel <- sweep(sel, 2, Fbar, "/")
