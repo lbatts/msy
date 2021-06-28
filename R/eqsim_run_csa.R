@@ -201,7 +201,7 @@ eqsim_run <- function(fit,
   landings <- matrix(FLCore::quantSums(FLCore::landings.n(stk.winsel), ncol = slyr2 - slyr1 + 1))
   # if zero, use 0.10 of minimum value
 
-  catch <- matrix(FLCore::qunatSums(FLCore::catch.n(stk.winsel), ncol = slyr2 - slyr1 + 1))
+  catch <- matrix(FLCore::quantSums(FLCore::catch.n(stk.winsel), ncol = slyr2 - slyr1 + 1))
   sel <- matrix(FLCore::harvest(stk.winsel), ncol = slyr2 - slyr1 + 1)
   Fbar <- matrix(FLCore::fbar(stk.winsel), ncol = slyr2 - slyr1  + 1)
   sel <- sweep(sel, 2, Fbar, "/")
@@ -435,8 +435,8 @@ eqsim_run <- function(fit,
 
     # convert to catch weight
     #For CSA catch.n needs to be summed before multiplying by weight
-    Lan <- apply(land, 2:3, sum)
-    Cat <- apply(Cw, 2:3, sum)
+    Lan <- apply((Cy), 2:3, sum)
+    Cat <- apply(Cy, 2:3, sum)
     Lan<-Lan*Wl*Ry
     Cat<-Cat*Wy
     #Cw <- Cy * Wy   # catch Numbers *catch wts
