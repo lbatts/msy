@@ -439,10 +439,10 @@ eqsim_run_csa <- function(fit,
     #collapse Cy to total catch numbers
     tmpCy<-apply(Cy,2:3,sum)
     
-    Cat<-Lan<-array(tmpCy, c(1, Nrun, Nmod),
-          dimnames = list(age = (range(stk)[1]:range(stk)[2]),
-                          year = 1:Nrun,
-                          iter = 1:Nmod))
+    Cat<-Lan <- array(tmpCy, c(1, Nrun, Nmod),
+            dimnames = list(age = (1),
+                            year = 1:Nrun,
+                            iter = 1:Nmod))
     
     Lan<-Lan*Wl*Ry
     Cat<-Cat*Wy
