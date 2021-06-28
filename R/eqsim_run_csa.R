@@ -435,13 +435,22 @@ eqsim_run_csa <- function(fit,
     
     # convert to catch weight
     #For CSA catch.n needs to be summed before multiplying by weight
-    Lan <- apply((Cy), 2:3, sum)
-    Cat <- apply(Cy, 2:3, sum)
+    
+    #collapse Cy to total catch numbers
+    tmpCy<-apply(Cy,2:3,sum)
+    
+    Cat<-Lan<-array(tmpCy, c(1, Nrun, Nmod),
+          dimnames = list(age = (range(stk)[1]:range(stk)[2]),
+                          year = 1:Nrun,
+                          iter = 1:Nmod))
+    
     Lan<-Lan*Wl*Ry
     Cat<-Cat*Wy
-    #Cw <- Cy * Wy   # catch Numbers *catch wts
-    #land <- Cy * Ry * Wl # catch Numbers * Fraction (in number) landed and landed wts
-    
+    # convert to catch weight
+    # Cw <- Cy * Wy   # catch Numbers *catch wts
+    # land <- Cy * Ry * Wl # catch Numbers * Fraction (in number) landed and landed wts
+    # Lan <- apply(land, 2:3, sum)
+    # Cat <- apply(Cw, 2:3, sum)
     
     # summarise everything and spit out!
     ferr[i, , ] <- Ferr[begin:Nrun, ]
